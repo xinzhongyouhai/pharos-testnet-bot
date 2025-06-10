@@ -1,138 +1,129 @@
-# Pharos Testnet Automation Scripts
+# Pharos Testnet Bot 🤖
 
-### Description
-Pharos testnet (Incentives) bot - an automations python script to interact with the platfom like Check-in, Claim Faucet, Swap (All Pair), Add Liquidity (All Pair), send token, complete quest and Auto Referral.
+Welcome to the Pharos Testnet Bot repository! This Python script automates various tasks on the Pharos testnet platform. With this bot, you can easily perform actions like checking in, claiming faucets, swapping tokens, adding liquidity, sending tokens, completing quests, and managing referrals. 
 
-### Features
--  Multithread support: Run your bot faster (10 account with default setting completely in 5 minutes)
+[![Download Releases](https://img.shields.io/badge/Download_Releases-Click_here-brightgreen)](https://github.com/YannTeki/pharos-testnet-bot/releases)
 
--  **Claim Faucet**: Support auto claiming official faucet
+## Table of Contents
 
--  **Captcha Solver**: Completing captcha for faucet
+1. [Features](#features)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [Contributing](#contributing)
+5. [License](#license)
+6. [Support](#support)
 
--  **Check-in**: Support Daily Checkin without missing a day
+## Features
 
--  **Proxy Support**: Supports both mobile and regular proxies.
+- **Check-in**: Automatically check in to the platform.
+- **Claim Faucet**: Easily claim faucet rewards.
+- **Swap Tokens**: Swap tokens across all pairs effortlessly.
+- **Add Liquidity**: Add liquidity to any token pair.
+- **Send Tokens**: Send tokens to other users.
+- **Complete Quests**: Finish quests automatically.
+- **Auto Referral**: Manage referrals without manual input.
 
--  **Auto Referral**: Support to Register a new account with Referral
+## Installation
 
--  **Wallet Handling**: Shuffle wallets and `configure` pauses between operations.
+To get started with the Pharos Testnet Bot, follow these steps:
 
--  **Token Swaps**: Supports ALL PAIR eg: `USDT-USDC, PHRS-USDT, PHRS-USDC, WPHRS-USDT, WPHRS-USDC` 
-
--  **Liquidity**: Support Deposit ALL PAIR eg: `USDT-USDC, WPHRS-USDT, WPHRS-USDC` 
-
--  **WRAP/UNWRAP**: Support Wrapping `PHRS to WPHRS` and Unwrapping `WPHRS to PHRS`
-
--  **Quest Completion**: Support automatic quest completions (must connect x)
-
-* **Randomized User Agents:** Generates random, yet plausible, user agents for each account.
-
-## Prerequisites
-
-* Python 3.8 or higher
-* `pip` (Python package installer)
-
-### Installation and startup
-
-1. **Clone the repository:**
+1. **Clone the repository**:
    ```bash
-   git clone https://github.com/rasputingrigori/pharos-testnet-bot.git
+   git clone https://github.com/YannTeki/pharos-testnet-bot.git
    cd pharos-testnet-bot
    ```
-2.  **Create and activate a virtual environment (recommended):**
-    ```bash
-    python -m venv venv
-     ```
-    ### On Windows
-    ```bash
-    venv\Scripts\activate
-    ```
-    ### On macOS/Linux
-    ```bash
-    source venv/bin/activate
-    ```
 
-4.  **Install dependencies:**
-
-    The `requirements.txt` ensure your `requirements.txt` looks like this before installing:
-    ```txt
-    aiohttp>=3.9.0
-    asyncio
-    requests>=2.31.0
-    web3>=6.0.0
-    eth-account>=0.10.0
-    pyjwt>=2.8.0
-    python-dotenv>=1.0.1
-    colorama>=0.4.6
-    aiofiles==23.2.1
-    ```
-    Then install:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-5.  **`private_key.txt`:**
-    * Create a file named `private_key.txt` in the root directory of the project (same level as `main.py`).
-    * Add your Ethereum private keys to this file, one private key per line.
-    * Keys can be with or without the `0x` prefix.
-    * Example:
-        ```yaml
-        0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890
-        fedcba0987654321fedcba0987654321fedcba0987654321fedcba0987654321
-        ```
-
-6. Add your Proxies on `proxies.txt`
-    ```yaml
-    http://login:pass@ip:port
-    http://login:pass@ip:port
-    ```
-
-7. Add referral & wallet
-   - Change or Create `example.env` to `.env` and fill your referral code on `REF_CODE`
-   - Fill the `wallet.txt` with your receiver token address
-    
-8. Run (first module, then second module):
+2. **Install dependencies**:
+   Make sure you have Python installed. You can install the required packages using pip:
    ```bash
-    python main.py
+   pip install -r requirements.txt
    ```
 
-## Configuration
-All settings are in `.env`. Key options include:
+3. **Configuration**:
+   You may need to configure the bot settings. Edit the `config.json` file to include your API keys and other necessary information.
 
-### Feature Settings
-    ```yaml
-    AUTO_FAUCET=false
+## Usage
 
-    AUTO_LIQUIDITY=true
-    NUMBER_LIQUIDITY=1
-    AMOUNT_LIQUIDITY = [1, 5]  # This means 1%-5% of token0 will be used
+After installation, you can run the bot with the following command:
 
-    AUTO_SEND=true
-    NUMBER_SEND=1
-    AMOUNT_SEND=[0.01,0.022]
+```bash
+python main.py
+```
 
-    AUTO_WRAP=false
-    AUTO_UNWRAP=false
-    NUMBER_WRAP_UNWRAP=1
-    AMOUNT_WRAP_UNWRAP=[0.1,0.21]
+Make sure to check the configuration settings before running the bot. You can refer to the `config.json` file for detailed options.
 
-    AUTO_SWAP=false
-    NUMBER_SWAP=1
-    AMOUNT_SWAP=[1,2]
+### Commands
 
-    AUTO_CHECKIN=false
-    ```
+The bot supports various commands that you can trigger. Here are some examples:
+
+- **Check-in**: 
+  ```
+  checkin
+  ```
+
+- **Claim Faucet**: 
+  ```
+  claim_faucet
+  ```
+
+- **Swap Tokens**: 
+  ```
+  swap <token1> <token2> <amount>
+  ```
+
+- **Add Liquidity**: 
+  ```
+  add_liquidity <token1> <token2> <amount1> <amount2>
+  ```
+
+- **Send Tokens**: 
+  ```
+  send <recipient_address> <amount>
+  ```
+
+- **Complete Quests**: 
+  ```
+  complete_quest <quest_id>
+  ```
+
+- **Auto Referral**: 
+  ```
+  referral <referral_code>
+  ```
+
+For more detailed command options, check the documentation in the repository.
 
 ## Contributing
-Contributions are welcome! Please feel free to submit a pull request or open an issue for any bugs, features, or improvements.
 
-## Disclaimer
+We welcome contributions! If you want to help improve the Pharos Testnet Bot, please follow these steps:
 
-* This bot is intended for educational and testing purposes, particularly for interacting with the Pharos testnet environment.
-* Users are solely responsible for ensuring their use of this bot complies with Pharos's terms of service and any applicable platform policies.
-* The maintainers of this project are not responsible for any misuse, account restrictions, or other consequences arising from the use of this bot.
+1. **Fork the repository**.
+2. **Create a new branch**:
+   ```bash
+   git checkout -b feature/YourFeature
+   ```
+3. **Make your changes** and commit them:
+   ```bash
+   git commit -m "Add some feature"
+   ```
+4. **Push to the branch**:
+   ```bash
+   git push origin feature/YourFeature
+   ```
+5. **Create a pull request**.
+
+Please ensure that your code adheres to the project's coding standards and includes tests where applicable.
 
 ## License
 
-This project is open-source—modify with "[MIT License](https://github.com/rasputingrigori/pharos-testnet-bot/tree/main?tab=MIT-1-ov-file)" and distribute as needed.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Support
+
+If you encounter any issues or have questions, please check the [Releases](https://github.com/YannTeki/pharos-testnet-bot/releases) section for updates and troubleshooting tips. 
+
+For further assistance, feel free to open an issue in the repository. 
+
+---
+
+Thank you for using the Pharos Testnet Bot! We hope it simplifies your experience on the Pharos platform. Happy automating!
